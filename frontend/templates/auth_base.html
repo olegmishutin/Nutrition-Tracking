@@ -1,0 +1,24 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/auth.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="auth">
+        <a href="{% url 'users:index' %}" class="auth__logo">
+            <img src="{% static 'image/logo.png' %}" alt="logo">
+        </a>
+        <form action="{% block action %}{% endblock %}" method="post" class="auth__box">
+            {% csrf_token %}
+            <div class="auth__box__row">
+                <p>email</p>
+                <input class="textbox" type="email" name="email" placeholder="Введите email" required>
+            </div>
+            <div class="auth__box__row">
+                <p>Пароль</p>
+                <input class="textbox" type="password" name="password" placeholder="Введите пароль" required>
+            </div>
+            <input type="submit" value="{% block submit_value %}{% endblock %}">
+        </form>
+    </div>
+{% endblock %}

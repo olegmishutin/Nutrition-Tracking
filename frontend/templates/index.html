@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/index.css' %}">
+{% endblock %}
+{% block content %}
+    <div class="index">
+        <h1><i>Веб-приложение для<br>отслеживания питания</i></h1>
+        <div class="index__info">
+            <div class="index__info__img">
+                <img src="{% static 'image/logo.png' %}" alt="logo">
+            </div>
+            <div class="index__info__block">
+                <div class="info">
+                    <p>Функциональное и удобное приложение для отслеживания питания, которое позволит легко
+                        контролировать свой рацион; видеть рекомендации по рациону питания в соответствии с возрастом;
+                        отслеживать питательное содержание потребляемой еды и напитков и следить за состоянием своего
+                        здоровья. Приложение поможет достичь вам желаемого результата и будет предоставлять персональные
+                        рекомендации по питанию.</p>
+                </div>
+                {% if request.user.is_authenticated %}
+                    <a href="">Меню</a>
+                {% endif %}
+            </div>
+        </div>
+        <div class="index__buttons">
+            <a href="{% url 'users:login' %}">Войти</a>
+            <a href="{% url 'users:reg' %}">Зарегистрироваться</a>
+        </div>
+    </div>
+{% endblock %}
