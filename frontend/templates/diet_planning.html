@@ -1,0 +1,32 @@
+{% extends 'base_with_header.html' %}
+{% load static %}
+{% block base_stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/diet_planning.css' %}">
+    <link rel="stylesheet" href="{% static 'css/recommendations.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="diet">
+        <form action="{% url 'recommendation:diet-planning' %}" class="diet_planning" method="get">
+            <div class="diet_planning__row">
+                <p>Какого веса вы сейчас?</p>
+                <input class="textbox" type="number" name="now_weight" placeholder="Введите" required>
+            </div>
+            <div class="diet_planning__row">
+                <p>Какого веса вы хотите быть?</p>
+                <input class="textbox" type="number" name="expected_weight" placeholder="Введите" required>
+            </div>
+            <input type="submit" value="Отправить">
+        </form>
+        {% if recommendations %}
+            <h2 class="diet_planning__name">Для этого вам следует:</h2>
+            <ul class="recommendations">
+                {% for recommendation in recommendations %}
+                    <li>
+                        <h2>{{ recommendation.name }}</h2>
+                        <p>{{ recommendation.text }}</p>
+                    </li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    </div>
+{% endblock %}

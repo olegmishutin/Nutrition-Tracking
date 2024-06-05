@@ -30,3 +30,8 @@ def loginView(request):
 
                 return redirect('users:index')
     return render(request, 'login_page.html')
+
+
+def logoutView(request):
+    logout(request)
+    return redirect('users:login')

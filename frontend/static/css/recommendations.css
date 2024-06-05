@@ -1,0 +1,22 @@
+.recommendations{
+    width: 100%;
+    margin-top: 110px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 60px;
+    padding: 0 115px;
+    box-sizing: border-box;
+}
+
+.recommendations li{
+    max-width: 988px;
+    background-color: #F0E1F0;
+    border: 1px solid #B995D6;
+    border-radius: 5px;
+    padding: 20px;
+}
+
+.recommendations li p{
+     margin-top: 20px;
+}

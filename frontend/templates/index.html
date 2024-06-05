@@ -19,7 +19,7 @@
                         рекомендации по питанию.</p>
                 </div>
                 {% if request.user.is_authenticated %}
-                    <a href="">Меню</a>
+                    <a href="{% url 'recommendation:recommendation-list' %}">Меню</a>
                 {% endif %}
             </div>
         </div>

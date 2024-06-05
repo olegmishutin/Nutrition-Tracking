@@ -4,8 +4,8 @@ from .managers import UserManager
 
 
 class User(AbstractBaseUser, PermissionsMixin):
-    is_superuser = models.BooleanField(default=False)
-    is_staff = models.BooleanField(default=False)
+    is_superuser = models.BooleanField('является суперпользователем', default=False)
+    is_staff = models.BooleanField('является админом', default=False)
 
     email = models.EmailField('email', unique=True, db_index=True)
 

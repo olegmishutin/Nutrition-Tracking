@@ -1,0 +1,15 @@
+{% extends 'base_with_header.html' %}
+{% load static %}
+{% block base_stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/recommendations.css' %}">
+{% endblock %}
+{% block main %}
+    <ul class="recommendations">
+        {% for recommendation in recommendations %}
+        	<li>
+                <h2>{{ recommendation.name }}</h2>
+                <p>{{ recommendation.text }}</p>
+            </li>
+        {% endfor %}
+    </ul>
+{% endblock %}
