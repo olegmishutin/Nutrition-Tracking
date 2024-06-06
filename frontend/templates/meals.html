@@ -1,0 +1,82 @@
+{% extends 'base_with_header.html' %}
+{% load static %}
+{% block base_stylesheet %}
+    <link rel="stylesheet" href="{% static 'css/meals.css' %}">
+    <link rel="stylesheet" href="{% static 'css/recommendations.css' %}">
+{% endblock %}
+{% block main %}
+    <div class="meals">
+        <form action="{% url 'recommendation:my-meals' %}" method="post" class="meals__form"
+              enctype="multipart/form-data">
+            {% csrf_token %}
+            <div class="meals__data">
+                <h2>Введите блюдо которое вы употребили:</h2>
+                <div class="meals__data__row">
+                    <label for="name">Название:</label>
+                    <input type="text" name="name" id="name" placeholder="Введите название" required>
+                </div>
+                <div class="meals__data__row">
+                    <label for="calories">Сколько каллорий в нем?</label>
+                    <input type="number" name="calories" id="calories" placeholder="Введите кол-во" required>
+                </div>
+                <p>Какие полезные вещества в нем были?</p>
+                <div class="meals__data__usefulness">
+                    <div class="meals__data__row">
+                        <label for="vitamins">Витамины</label>
+                        <input type="number" name="vitamins" id="vitamins" placeholder="Введите кол-во" required>
+                    </div>
+                    <div class="meals__data__row">
+                        <label for="minerals">Минералы</label>
+                        <input type="number" name="minerals" id="minerals" placeholder="Введите кол-во" required>
+                    </div>
+                    <div class="meals__data__row">
+                        <label for="proteins">Белки</label>
+                        <input type="number" name="proteins" id="proteins" placeholder="Введите кол-во" required>
+                    </div>
+                    <div class="meals__data__row">
+                        <label for="fats">Жиры</label>
+                        <input type="number" name="fats" id="fats" placeholder="Введите кол-во" required>
+                    </div>
+                    <div class="meals__data__row">
+                        <label for="carbohydrates">Углеводы</label>
+                        <input type="number" name="carbohydrates" id="carbohydrates" placeholder="Введите кол-во"
+                               required>
+                    </div>
+                </div>
+                <div class="meals__data__row">
+                    <label for="date">Введите время</label>
+                    <input type="datetime-local" name="date" id="date" placeholder="Введите кол-во" required>
+                </div>
+                <input type="submit" value="Отправить">
+            </div>
+            <div class="meals_photo">
+                <div class="meals_photo__box">
+                    <img src="{% static 'image/meal.png' %}" alt="photo">
+                </div>
+                <label for="photo">выбрать фото</label>
+                <input type="file" name="photo" id="photo" accept="image/*">
+            </div>
+        </form>
+        <ul class="recommendations">
+            {% for meal in meals %}
+                <li>
+                    <div class="info">
+                        <h2>Название: {{ meal.name }}</h2>
+                        <p>Кол-во каллорий: {{ meal.calories }}</p>
+                        <p>Кол-во витаминов: {{ meal.vitamins }}</p>
+                        <p>Кол-во минералов: {{ meal.minerals }}</p>
+                        <p>Кол-во белков: {{ meal.proteins }}</p>
+                        <p>Кол-во жиров: {{ meal.fats }}</p>
+                        <p>Кол-во углеводов: {{ meal.carbohydrates }}</p>
+                        <p>Время употрбления: {{ meal.date }}</p>
+                    </div>
+                    {% if meal.photo %}
+                        <div class="meal_photo">
+                            <img src="{{ meal.photo.url }}" alt="photo">
+                        </div>
+                    {% endif %}
+                </li>
+            {% endfor %}
+        </ul>
+    </div>
+{% endblock %}
